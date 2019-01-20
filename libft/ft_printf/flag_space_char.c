@@ -36,12 +36,10 @@ void			flag_space_percent(const char *f, int nb, int t, int *ret)
 {
 	int		k;
 	int		j;
-	int		b;
 	char	c;
 
 	j = 0;
 	c = ' ';
-	b = flag_plus_space_percent(f, t);
 	while ((f[t] < '0' || f[t] > '9') && f[t] != 'c' && f[t] != 's'
 			&& f[t] != 'p' && f[t] != 'd' && f[t] != 'i' && f[t] != 'o'
 			&& f[t] != 'u' && f[t] != 'x' && f[t] != 'X' && f[t] != 'f'

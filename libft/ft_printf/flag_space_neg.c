@@ -39,11 +39,7 @@ void	flag_space_neg(int space, int precis, int *ret)
 int		flag_space_neg_nb_error(const char *f, int t)
 {
 	int		k;
-	int		j;
-	char	c;
 
-	j = 0;
-	c = ' ';
 	while (f[t] != '-' && f[t] != '\0')
 		t++;
 	k = ft_atoi(&f[t]);

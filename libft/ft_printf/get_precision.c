@@ -19,7 +19,7 @@ int		get_precision(const char *f, int t, int *ret)
 	size = flag_precision(f, t);
 	if (size == 0 || size == -5)
 		(*ret)--;
-	return (flag_precision(f, t));
+	return (size);
 }
 
 int		get_precision2(const char *f, int t)
@@ -27,5 +27,5 @@ int		get_precision2(const char *f, int t)
 	int		size;
 
 	size = flag_precision(f, t);
-	return (flag_precision(f, t));
+	return (size);
 }
