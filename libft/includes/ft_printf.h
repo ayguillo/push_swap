@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 11:19:41 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/17 13:09:42 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:27:39 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ typedef struct	s_flag
 	int		neg;
 }				t_flag;
 
-//int				ft_printf(const char *format, ...);
 int				dispatcher(va_list ap, int i, const char *format);
 void			capture_the_flag(const char *f, int t, t_flag *flag);
 

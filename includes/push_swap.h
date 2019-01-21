@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/18 18:04:37 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:15:26 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ typedef struct	s_check
 }				t_check;
 
 int				ft_verif(t_pslist *list);
-void			ft_checker(char *line, t_pslist **lista, t_pslist **listb);
+void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
+		int *err);
 void			ft_delchecklist(t_check **list);
 
 #endif

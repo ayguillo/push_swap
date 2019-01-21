@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:09:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/21 13:29:09 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 17:49:03 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 # define BUFF_SIZE 1
 
 int				ft_atoi(const char *str);
+long			ft_atol(const char *str);
 void			ft_bzero(void *s, size_t n);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
+int				ft_isdigitsign(char c);
 char			*ft_strcat(char *s1, const char *s2);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strcpy(char *dst, const char *src);

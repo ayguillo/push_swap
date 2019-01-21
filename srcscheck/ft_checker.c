@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/21 15:16:39 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:21:10 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ static t_check	*ft_double_instruction(t_check *checker, t_pslist **lista,
 	return (checker);
 }
 
-void			ft_checker(char *line, t_pslist **lista, t_pslist **listb)
+void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
+		int *err)
 {
 	int			n;
 	t_check		*checker;
@@ -88,11 +89,6 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb)
 	tmp = checker;
 	while ((n = ft_gnl(0, &line)))
 	{
-		if (!ft_strcmp(line, ""))
-		{
-			ft_strdel(&line);
-			break ;
-		}
 		while (ft_strcmp(line, checker->str) && checker->next)
 			checker = checker->next;
 		if (!ft_strcmp(line, "sa") || !ft_strcmp(line, "pb") ||
@@ -101,9 +97,21 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb)
 		else if (!ft_strcmp(line, "sb") || !ft_strcmp(line, "pa") ||
 				!ft_strcmp(line, "rb") || !ft_strcmp(line, "rrb"))
 			checker->ft_instruction1(listb, lista);
-		else
+		else if (!ft_strcmp(line, "ss") || !ft_strcmp(line, "rr") ||
+				!ft_strcmp(line, "rrr"))
 			checker = ft_double_instruction(checker, lista, listb);
+		else
+		{
+			ft_putstr("Error\n");
+			ft_strdel(&line);
+			ft_delchecklist(&checker);
+			(*err)++;
+			return ;
+		}
 		checker = tmp;
+		ft_strdel(&line);
 	}
+	if (line)
+		ft_strdel(&line);
 	ft_delchecklist(&checker);
 }
