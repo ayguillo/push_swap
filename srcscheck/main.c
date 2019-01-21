@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/21 18:47:24 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:58:57 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static void	ft_freelist(t_pslist **lista, t_pslist **listb)
 
 static int	ft_parsing(char *str, t_pslist **lista, t_pslist **listb)
 {
-	int		res;
+	int		re;
 	int		n;
 	int		sign;
 
 	n = -1;
-	res = 0;
+	re = 0;
 	sign = 0;
 	while (str[++n])
 	{
@@ -34,14 +34,14 @@ static int	ft_parsing(char *str, t_pslist **lista, t_pslist **listb)
 			n++;
 			sign++;
 		}
-		if (!ft_isdigit(str[n]))
-			res++;
+		if (!ft_isdigit(str[n]) || n > 11)
+			re++;
 	}
-	if ((ft_atol(str)) > 2147483647 || ((ft_atol(str))) < -2147483648)
-		res++;
-	if (res > 0)
+	if (re > 0 || (ft_atol(str)) > 2147483647 || ((ft_atol(str))) < -2147483648)
+		re++;
+	if (re > 0)
 		ft_freelist(lista, listb);
-	return (res);
+	return (re);
 }
 
 static void	ft_init(t_pslist **lista, t_pslist **listb, char **line, int *j)
