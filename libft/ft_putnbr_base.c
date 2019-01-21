@@ -6,11 +6,11 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/11 16:54:50 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/15 15:09:31 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:27:46 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "includes/libft.h"
 
 void	ft_putnbr_base(long long nb, int base)
 {

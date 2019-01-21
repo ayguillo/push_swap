@@ -6,11 +6,11 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 11:27:29 by ayguillo          #+#    #+#             */
-/*   Updated: 2018/11/23 11:02:53 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:33:20 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 char	*ft_strncat(char *s1, const char *s2, size_t n)
 {

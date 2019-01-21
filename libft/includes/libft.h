@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:09:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/18 13:53:15 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 13:29:09 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFF_SIZE 4
+# define BUFF_SIZE 1
 
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
@@ -91,7 +91,7 @@ char			*ft_strndup(const char *s1, size_t size);
 char			*ft_strcdup(const char *s1, char c);
 int				ft_strclen(const char *s, const char c);
 int				ft_sqrt(int n);
-int				ft_pwd(int n, int pow);
+int				ft_pow(int n, int pow);
 void			ft_print_words_tables(const char **tab);
 void			ft_lstdelcontent(void *lst, size_t size);
 void			ft_putlst(t_list *lst);

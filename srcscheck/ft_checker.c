@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/18 18:07:43 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:16:39 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,32 @@
 static t_check	*ft_add_check(char *str,
 		void (*ft_ptr_instr)(t_pslist **, t_pslist **), t_check *list)
 {
-	t_check	*nvel;
+	t_check		*nvel;
+	t_check		*tmp;
 
 	if (!(nvel = malloc(sizeof(t_check))))
 		return (NULL);
+	if (!(nvel->str = ft_strdup(str)))
+	{
+		free(nvel);
+		return (NULL);
+	}
+	nvel->ft_instruction1 = ft_ptr_instr;
+	nvel->next = NULL;
 	if (!list)
-	{
-		nvel->str = str;
-		nvel->ft_instruction1 = ft_ptr_instr;
-		nvel->next = NULL;
-	}
-	else
-	{
-		nvel->str = ft_strdup(str);
-		nvel->ft_instruction1 = ft_ptr_instr;
-		nvel->next = list;
-	}
-	return (nvel);
+		return (nvel);
+	tmp = list;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = nvel;
+	return (list);
 }
 
 static t_check	*ft_init_checker(void)
 {
 	t_check		*checker;
 
-	checker = NULL;
-	checker = ft_add_check("sa", ft_s, checker);
+	checker = ft_add_check("sa", ft_s, NULL);
 	checker = ft_add_check("sb", ft_s, checker);
 	checker = ft_add_check("ss", ft_s, checker);
 	checker = ft_add_check("pa", ft_p, checker);
@@ -103,6 +104,6 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb)
 		else
 			checker = ft_double_instruction(checker, lista, listb);
 		checker = tmp;
-		ft_strdel(&line);
 	}
+	ft_delchecklist(&checker);
 }
