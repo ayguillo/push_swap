@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/01/21 16:02:32 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/01/22 19:49:43 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ END=$'\x1b[0m
 
 SRCS = srcs/ft_instructions.c \
 	   srcs/ft_list.c \
+	   srcs/ft_pars.c \
 
 SRCSCHECK = srcscheck/main.c \
 			srcscheck/ft_checker.c \
@@ -32,14 +33,10 @@ OBJS = $(SRCS:.c=.o)
 
 OBJSCHECK = $(SRCSCHECK:.c=.o)
 
-all : $(TESTNAME) $(NAMECHECK) $(LIBFT)
+all : $(NAMECHECK) $(LIBFT)
 
 $(LIBFT) :
 	@make -C libft
-
-$(TESTNAME) : $(OBJS)
-	$(CC) $(CFLAGS) -g -o $(TESTNAME) $(OBJS) libft/libft.a
-	@echo "$(GREEN)$(TESTNAME) compiled ✔$(END)"
 
 $(NAMECHECK) : $(OBJSCHECK) $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAMECHECK) $(OBJSCHECK) $(OBJS) libft/libft.a

@@ -5,46 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/22 20:02:50 by ayguillo         ###   ########.fr       */
+/*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
+/*   Updated: 2019/01/22 20:05:32 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	ft_init(t_pslist **lista, t_pslist **listb, char **line, int *j)
+
+static void		ft_init(t_pslist **lista, t_pslist **listb)
 {
-	*line = NULL;
 	*lista = NULL;
 	*listb = NULL;
-	*j = 0;
 }
 
-void		ft_delchecklist(t_check **list)
-{
-	t_check		*tmp;
-	t_check		*head;
-
-	while (*list)
-	{
-		tmp = (*list)->next;
-		head = *list;
-		ft_strdel(&head->str);
-		free(head);
-		*list = tmp;
-	}
-}
-
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	int			n;
-	int			j;
 	t_pslist	*lista;
-	t_pslist	*listb;
-	char		*line;
 
 	n = 0;
-	ft_init(&lista, &listb, &line, &j);
+	ft_init(&lista, &listb);
 	if (ac < 1)
 		return (0);
 	while (av[++n])
@@ -56,10 +37,9 @@ int			main(int ac, char **av)
 			return (-1);
 		}
 	}
-	ft_checker(line, &lista, &listb, &j);
-	if (j > 0)
-		return (-1);
-	ft_verif(lista) == 1 ? ft_putstr("OK\n") : ft_putstr("KO\n");
-	ft_freelist(&lista, &listb);
-	return (0);
+	if (ft_verif(lista) == 1)
+	{
+		ft_freelist(&lista, &listb);
+		return (0);
+	}
 }

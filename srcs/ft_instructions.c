@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 16:38:57 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/18 15:38:20 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/22 18:53:11 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	ft_r(t_pslist **lista, t_pslist **listb)
 	first->next = NULL;
 }
 
-void	ft_rr(t_pslist **lista,t_pslist **listb)
+void	ft_rr(t_pslist **lista, t_pslist **listb)
 {
 	t_pslist	*first;
 	t_pslist	*save;
@@ -68,6 +68,6 @@ void	ft_rr(t_pslist **lista,t_pslist **listb)
 		save = save->next;
 	while ((*lista)->next)
 		(*lista) = (*lista)->next;
-	(*lista)->next=first;
+	(*lista)->next = first;
 	save->next = NULL;
 }
