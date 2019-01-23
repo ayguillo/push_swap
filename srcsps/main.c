@@ -6,12 +6,11 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/22 20:05:32 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/23 18:51:21 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 static void		ft_init(t_pslist **lista, t_pslist **listb)
 {
@@ -23,6 +22,7 @@ int				main(int ac, char **av)
 {
 	int			n;
 	t_pslist	*lista;
+	t_pslist	*listb;
 
 	n = 0;
 	ft_init(&lista, &listb);
@@ -42,4 +42,7 @@ int				main(int ac, char **av)
 		ft_freelist(&lista, &listb);
 		return (0);
 	}
+	ft_printlist_nb(lista);
+	ft_shortsort(&lista, &listb);
+	ft_printlist_nb(lista);
 }

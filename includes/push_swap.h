@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/22 20:05:38 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:29:09 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_pslist
 {
 	int				content;
 	struct s_pslist	*next;
+	struct s_pslist	*prev;
 }				t_pslist;
 
 t_pslist		*ft_addl(t_pslist *list, int nw);
@@ -63,5 +64,20 @@ typedef struct	s_check
 void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 		int *err);
 void			ft_delchecklist(t_check **list);
+
+/*
+ ** Push_swap
+*/
+
+typedef struct	s_instructions
+{
+	char					*str;
+	void					(*ft_instruction)(t_pslist **, t_pslist **);
+	struct s_instructions	*next;
+}				t_instructions;
+void			ft_exec_inst(t_pslist **lista, t_pslist **listb, char *str);
+int				ft_pslstlen(t_pslist *list);
+void			ft_shortsort(t_pslist **lista, t_pslist **listb);
+int				ft_med(t_pslist *list);
 
 #endif
