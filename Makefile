@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/01/23 16:30:14 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/01/24 19:03:40 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,10 @@ SRCSCHECK = srcscheck/main.c \
 			srcscheck/ft_checker.c \
 
 SRCSPS = srcsps/ft_init_instructions.c \
+		 srcsps/numbers.c \
 		 srcsps/main.c \
 		 srcsps/ft_shortsorts.c \
+		 srcsps/ft_insertsort.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -55,12 +57,12 @@ $(NAMEPS) : $(OBJSPS) $(OBJS)
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-clean :
+clean : $(OBJSCHECK) $(OBJSPS) $(OBJS)
 	@make clean -C libft
 	@rm -r $(OBJS) $(OBJSCHECK) $(OBJSPS)
 	@echo "$(RED)Push_swap objects deleted ✕$(END)"
 
-fclean : clean
+fclean : clean 
 	@make fclean -C libft
 	@rm -r $(NAMECHECK) $(NAMEPS)
 	@echo "$(RED)$(NAMECHECK) deleted ✕$(END)"

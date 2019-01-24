@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/23 16:42:09 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/24 14:44:09 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 		ft_putstr("Error\n");
 		return (NULL);
 	}
-	ft_putendl_fd(str, 0);
+	ft_putendl(str);
 	return (inst);
 }
 

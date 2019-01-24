@@ -1,41 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   insertsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 14:31:43 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/18 12:29:54 by ayguillo         ###   ########.fr       */
+/*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
+/*   Updated: 2019/01/24 18:26:46 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int main(int ac, char **av)
+void	ft_insertsort(t_pslist **lista, t_pslist **listb)
 {
-	int			n;
-	t_pslist	*a;
-	char		*line;
-	t_pslist	*b;
+	int			min;
+	int			place;
+	t_pslist	*tmp;
 
-	n = 1;
-	line = NULL;
-	if (ac >= 1)
+	while (*lista)
 	{
-		while (av[n])
+		place = 0;
+		min = ft_min(*lista, &place);
+		tmp = *lista;
+		while ((*lista)->content != min)
 		{
-			a = ft_addr(a, ft_atoi(av[n]));
-			n++;
+			if (place > ft_pslstlen(*lista) / 2)
+				ft_exec_inst(lista, listb, "rra");
+			else
+				ft_exec_inst(lista, listb, "ra");
 		}
-		printf("avant exec \n a\n");
-		ft_printlist_nb(a);
-		ft_s(&a, &b);
-		ft_p(&a, &b);
-		printf("apres exec \n a\n");
-		ft_printlist_nb(a);
-		printf(" b\n");
-		ft_printlist_nb(b);
+		if (ft_verif(*lista) == 1)
+			break;
+		ft_exec_inst(lista, listb, "pb");
 	}
-	return (0);
+	while (*listb)
+		ft_exec_inst(lista, listb, "pa");
 }

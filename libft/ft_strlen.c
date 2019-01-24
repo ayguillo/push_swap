@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:07:57 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/21 13:32:48 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/24 15:35:43 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t n;
 
 	n = 0;
+	if (!s)
+		return (0);
 	while (s[n])
 		n++;
 	return (n);
