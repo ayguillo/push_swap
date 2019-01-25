@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 18:46:40 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/25 18:46:57 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ int				main(int ac, char **av)
 		ft_freelist(&lista, &listb);
 		return (0);
 	}
-	//ft_printlist_nb(lista);
-	//ft_shortsort(&lista, &listb);
-	ft_quicksort(&lista, &listb);
+	printf("\x1b[32m Lista avant exec\n");
+	ft_printlist_nb(lista);
+	printf("\x1b[31mExec programme \x1b[0m\n");
+	ft_quicksort(&lista, &listb, ft_pslstlen(lista));
 	ft_printf("_________________a____________\n");
 	ft_printlist_nb(lista);
 	ft_printf("_________________b____________\n");

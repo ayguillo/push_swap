@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 18:56:37 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/25 18:46:55 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_pslist
 {
 	int				content;
 	struct s_pslist	*next;
-	struct s_pslist	*prev;
 }				t_pslist;
 
 t_pslist		*ft_addl(t_pslist *list, int nw);
@@ -78,11 +77,11 @@ typedef struct	s_instructions
 }				t_instructions;
 void			ft_exec_inst(t_pslist **lista, t_pslist **listb, char *str);
 int				ft_pslstlen(t_pslist *list);
-int				ft_med(t_pslist *list);
+int				ft_med(t_pslist *list, int len);
 int				ft_min(t_pslist *list, int *i);
 int				ft_max(t_pslist *list, int *j);
 void			ft_shortsort(t_pslist **lista, t_pslist **listb);
 void			ft_insertsort(t_pslist **lista, t_pslist **listb);
-int				ft_quicksort(t_pslist **lista, t_pslist **listb);
+void			ft_quicksort(t_pslist **lista, t_pslist **listb, int len);
 
 #endif
