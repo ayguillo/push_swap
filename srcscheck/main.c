@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 18:02:10 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/28 15:32:16 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int			main(int ac, char **av)
 	ft_init(&lista, &listb, &line, &j);
 	if (ac < 1)
 		return (0);
-	if (ac == 2)
-		ft_onearg(av[1], &lista, &listb);
 	while (av[++n])
 		if (ft_parsing(av[n], &lista, &listb) > 0 ||
 				!(lista = ft_addr(lista, ft_atoi(av[n]))))

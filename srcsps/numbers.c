@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:15:34 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/25 18:46:56 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/28 16:16:03 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,33 @@
 
 int		ft_med(t_pslist *list, int len)
 {
-	t_pslist	*tmp;
-	t_pslist	*tmp1;
-	int			med;
-	int			medlen;
 	int			i;
-	int			j;
+	t_pslist	*tmp;
+	int			tab[len];
+	int			tmp2;
 
-	tmp = list;
 	i = -1;
-	while (tmp && ++i < len)
+	tmp = list;
+	while (++i < len)
 	{
-		med = tmp->content;
-		medlen = ((len / 2) - 1);
-		tmp1 = list;
-		j = -1;
-		while (tmp1 && j < len)
-		{
-			if (tmp1->content < med)
-				medlen--;
-			tmp1 = tmp1->next;
-		}
-		if (medlen == 0)
-			break ;
+		tab[i] = tmp->content;
 		tmp = tmp->next;
 	}
-	return (med);
+	i = 0;
+	while (i < len)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			tmp2 = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = tmp2;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	printf("med === %i\n", tab[len / 2]);
+	return (tab[len / 2]);
 }
 
 int		ft_min(t_pslist *list, int *i)

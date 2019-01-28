@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/01/25 13:47:28 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/01/28 16:16:08 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT = lib
 
 CC = @ gcc 
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
 
 RED=$'\x1b[31m
 GREEN=$'\x1b[32m

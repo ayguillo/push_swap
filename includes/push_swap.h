@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/25 18:46:55 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/28 16:16:10 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			ft_rr(t_pslist **lista, t_pslist **listb);
 
 int				ft_verif(t_pslist *list);
 int				ft_parsing(char *str, t_pslist **lista, t_pslist **listb);
-void			ft_onearg(char *str, t_pslist **lista, t_pslist **lisbt);
+/*void			ft_onearg(char *str, t_pslist **lista, t_pslist **lisbt);*/
 
 /*
  ** Checker

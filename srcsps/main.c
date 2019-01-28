@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/25 18:46:57 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/28 15:45:49 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int				main(int ac, char **av)
 	ft_init(&lista, &listb);
 	if (ac < 1)
 		return (0);
-	if (ac == 2)
+/*	if (ac == 2)
 		ft_onearg(av[1], &lista, &listb);
-	else
+	else*/
 		while (av[++n])
 			if (ft_parsing(av[n], &lista, &listb) > 0 ||
 					!(lista = ft_addr(lista, ft_atoi(av[n]))))
@@ -43,12 +43,12 @@ int				main(int ac, char **av)
 		ft_freelist(&lista, &listb);
 		return (0);
 	}
-	printf("\x1b[32m Lista avant exec\n");
+/*	printf("\x1b[32m Lista avant exec \n");
 	ft_printlist_nb(lista);
-	printf("\x1b[31mExec programme \x1b[0m\n");
+	printf("\x1b[31mExec programme \x1b[0m\n");*/
 	ft_quicksort(&lista, &listb, ft_pslstlen(lista));
-	ft_printf("_________________a____________\n");
+/*	ft_printf("_________________a____________\n");
 	ft_printlist_nb(lista);
 	ft_printf("_________________b____________\n");
-	ft_printlist_nb(listb);
+	ft_printlist_nb(listb);*/
 }
