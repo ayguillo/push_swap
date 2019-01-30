@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:15:34 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/28 16:16:03 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/29 09:17:52 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ int		ft_med(t_pslist *list, int len)
 		else
 			i++;
 	}
-	printf("med === %i\n", tab[len / 2]);
-	return (tab[len / 2]);
+	return (len % 2 == 0 ? tab[(len / 2) + 1] : tab[(len / 2)]);
 }
 
 int		ft_min(t_pslist *list, int *i)

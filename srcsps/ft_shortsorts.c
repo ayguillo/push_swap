@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:57:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 14:18:14 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/30 11:56:36 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void		ft_shortsort(t_pslist **lista, t_pslist **listb)
 	min = ft_min(*lista, &i);
 	max = ft_max(*lista, &j);
 	tmp = *lista;
+	if (ft_verif(*lista) == 1)
+		return ;
 	if (j > ft_pslstlen(*lista) / 2)
 		ft_exec_inst(lista, listb, "sa");
 	else if (i > ft_pslstlen(*lista) / 2)
