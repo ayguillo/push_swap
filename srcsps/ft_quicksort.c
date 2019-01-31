@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:16:52 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/31 15:07:37 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:32:45 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	ft_partition(t_pslist **lista, t_pslist **listb, int len, int med)
 			countra++;
 			ft_exec_inst(lista, listb, "ra");
 		}
-		len--;
 	}
 	if (countra < ft_pslstlen(*lista) / 2)
 		while (++i < countra)
