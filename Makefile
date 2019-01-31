@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/01/30 10:25:32 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/01/31 13:38:19 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCSPS = srcsps/ft_init_instructions.c \
 		 srcsps/ft_shortsorts.c \
 		 srcsps/ft_insertsort.c \
 		 srcsps/ft_sortopti.c \
+		 srcsps/ft_quicksort.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -43,8 +44,7 @@ OBJSCHECK = $(SRCSCHECK:.c=.o)
 
 OBJSPS = $(SRCSPS:.c=.o)
 
-all : $(NAMEPS) $(NAMECHECK) $(LIBFT)
-
+all : $(LIBFT) $(NAMEPS) $(NAMECHECK) 
 $(LIBFT) :
 	@make -C libft
 

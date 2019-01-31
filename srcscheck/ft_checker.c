@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/29 09:49:52 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/31 15:07:36 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,15 @@ static t_check	*ft_add_check(char *str,
 {
 	t_check		*nvel;
 	t_check		*tmp;
+	char		*dup;
 
 	if (!(nvel = malloc(sizeof(t_check))))
 		return (NULL);
-	if (!(nvel->str = ft_strdup(str)))
+	if (!(dup = ft_strdup(str)))
+		return (NULL);
+	if (!(nvel->str = dup))
 	{
+		ft_strdel(&dup);
 		free(nvel);
 		return (NULL);
 	}
@@ -71,6 +75,8 @@ static t_check	*ft_dispatcher(t_check *checker, t_pslist **lista,
 	}
 	else
 	{
+		ft_delchecklist(&checker);
+		ft_strdel(&line);
 		ft_putstr("Error\n");
 		return (NULL);
 	}
@@ -92,7 +98,6 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 			checker = checker->next;
 		if (!(ft_dispatcher(checker, lista, listb, line)))
 		{
-			ft_strdel(&line);
 			ft_delchecklist(&checker);
 			ft_freelist(lista, listb);
 			(*err)++;
@@ -101,7 +106,5 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 		checker = tmp;
 		ft_strdel(&line);
 	}
-	if (line)
-		ft_strdel(&line);
 	ft_delchecklist(&checker);
 }

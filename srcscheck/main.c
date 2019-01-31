@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/30 16:20:05 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/01/31 14:23:21 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int			main(int ac, char **av)
 		if (ft_parsing(av[n], &lista, &listb) > 0 ||
 				!(lista = ft_addr(lista, ft_atoi(av[n]))))
 		{
+			ft_strdel(&line);
 			ft_putstr("Error\n");
 			return (-1);
 		}
-//	ft_visu(lista, listb);
 	ft_checker(line, &lista, &listb, &j);
 	if (j > 0)
 		return (-1);
