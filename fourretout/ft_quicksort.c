@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/25 11:16:52 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/29 09:21:19 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/01 16:37:50 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void		ft_quicksort(t_pslist **lista, t_pslist **listb, int len)
 		ft_exec_inst(lista, listb, "rra");
 		i++;
 	}
-	ft_quicksort(lista, listb, pivot);
 	if (ft_pslstlen(*lista) < 2)
 		return ;
 	i = len - pivot;
@@ -57,5 +56,6 @@ void		ft_quicksort(t_pslist **lista, t_pslist **listb, int len)
 		ft_exec_inst(lista, listb, "pa");
 		i--;
 	}
+	ft_quicksort(lista, listb, pivot);
 	ft_quicksort(lista, listb, len);
 }

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:15:34 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/31 15:07:33 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/01 14:52:53 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_med(t_pslist *list, int len)
 		tmp = tmp->next;
 	}
 	i = 0;
-	while (i < len)
+	while (i < len - 1)
 	{
 		if (tab[i] > tab[i + 1])
 		{
@@ -40,8 +40,6 @@ int		ft_med(t_pslist *list, int len)
 			i++;
 	}
 	i = -1;
-	if (len >= 2)
-		return (tab[(len / 2)]);
 	return (tab[0]);
 }
 

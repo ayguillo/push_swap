@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 14:44:09 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:10:23 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static t_instructions	*ft_init_inst(void)
 {
 	t_instructions	*inst;
 
+	inst = NULL;
 	inst = ft_addinst("sa", ft_s, NULL);
 	inst = ft_addinst("sb", ft_s, inst);
 	inst = ft_addinst("ss", ft_s, inst);
@@ -65,8 +66,8 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	else if (!ft_strcmp(str, "sb") || !ft_strcmp(str, "pa") ||
 		!ft_strcmp(str, "rb") || !ft_strcmp(str, "rrb"))
 		inst->ft_instruction(listb, lista);
-	else if (!ft_strcmp(str, "ss") || !ft_strcmp(str, "rb") ||
-			!ft_strcmp(str, "rrb"))
+	else if (!ft_strcmp(str, "ss") || !ft_strcmp(str, "rr") ||
+			!ft_strcmp(str, "rrr"))
 	{
 		inst->ft_instruction(listb, lista);
 		inst->ft_instruction(lista, listb);
@@ -80,12 +81,34 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	return (inst);
 }
 
+static t_instructions	*ft_delinst(t_instructions *list)
+{
+	t_instructions	*tmp;
+
+	if (list)
+	{
+		while (list)
+		{
+			tmp = list;
+			list = list->next;
+			ft_strdel(&(tmp->str));
+			tmp = NULL;
+		}
+	}
+	return (NULL);
+}
+
 void					ft_exec_inst(t_pslist **lista,
 		t_pslist **listb, char *str)
 {
 	t_instructions	*inst;
 
-	inst = ft_init_inst();
-	if (!(ft_dispatcher_inst(inst, lista, listb, str)))
+	if (!(inst = ft_init_inst()))
 		return ;
+	if (!(ft_dispatcher_inst(inst, lista, listb, str)))
+	{
+		ft_delinst(inst);
+		return ;
+	}
+	ft_delinst(inst);
 }
