@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/02/01 19:10:16 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/02/04 14:30:33 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT = lib
 
 CC = @ gcc 
 
-CFLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror# -g -fsanitize=address
 
 RED=$'\x1b[31m
 GREEN=$'\x1b[32m
@@ -25,16 +25,18 @@ END=$'\x1b[0m
 SRCS = srcs/ft_instructions.c \
 	   srcs/ft_list.c \
 	   srcs/ft_pars.c \
-	   srcsps/ft_visu.c \
 
 SRCSCHECK = srcscheck/main.c \
 			srcscheck/ft_checker.c \
+			srcscheck/ft_visu.c \
 
 SRCSPS = srcsps/ft_init_instructions.c \
 		 srcsps/numbers.c \
 		 srcsps/main.c \
 		 srcsps/ft_shortsorts.c \
 		 srcsps/ft_insertsort.c \
+		 srcsps/ft_opti.c \
+		 srcsps/ft_optirb.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -59,15 +61,14 @@ $(NAMEPS) : $(OBJSPS) $(OBJS)
 
 clean : 
 	@make clean -C libft
-	@rm -r $(OBJS) $(OBJSCHECK) $(OBJSPS)
+	@rm -f $(OBJS) $(OBJSCHECK) $(OBJSPS)
 	@echo "$(RED)Push_swap objects deleted ✕$(END)"
 
 fclean : clean 
 	@make fclean -C libft
-	@rm -r $(NAMECHECK) $(NAMEPS)
+	@rm -f $(NAMECHECK) $(NAMEPS)
 	@echo "$(RED)$(NAMECHECK) deleted ✕$(END)"
 
 re : fclean all
-	@make re -C libft
 
 .PHONY : all clean fclean re

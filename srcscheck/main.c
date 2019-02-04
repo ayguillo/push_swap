@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/31 14:23:21 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/04 11:32:02 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			main(int ac, char **av)
 
 	n = 0;
 	ft_init(&lista, &listb, &line, &j);
-	if (ac < 1)
+	if (ac < 2)
 		return (0);
 	while (av[++n])
 		if (ft_parsing(av[n], &lista, &listb) > 0 ||

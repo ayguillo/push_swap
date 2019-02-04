@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/01 19:10:14 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/04 16:26:35 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,36 @@ void			ft_delchecklist(t_check **list);
  ** Push_swap
 */
 
+typedef struct	s_opti
+{
+	char			*str;
+	struct s_opti	*next;
+}				t_opti;
+
 typedef struct	s_instructions
 {
 	char					*str;
 	void					(*ft_instruction)(t_pslist **, t_pslist **);
 	struct s_instructions	*next;
 }				t_instructions;
-void			ft_exec_inst(t_pslist **lista, t_pslist **listb, char *str);
+
+void			ft_exec_inst(t_pslist **lista, t_pslist **listb, char *str,
+		t_opti **listopt);
 int				ft_pslstlen(t_pslist *list);
 int				ft_med(t_pslist *list, int len);
+void			ft_visu(t_pslist *lista, t_pslist *listb);
 int				ft_min(t_pslist *list, int *i);
 int				ft_max(t_pslist *list, int *j);
-void			ft_shortsort(t_pslist **lista, t_pslist **listb);
-void			ft_insertsort(t_pslist **lista, t_pslist **listb);
-void			ft_sortopti(t_pslist **lista, t_pslist **listb);
-void			ft_quicksort(t_pslist **lista, t_pslist **listb, int len);
-void			ft_visu(t_pslist *lista, t_pslist *listb);
+void			ft_shortsort(t_pslist **lista, t_pslist **listb,
+		t_opti **listopt);
+void			ft_insertsort(t_pslist **lista, t_pslist **listb,
+		t_opti **listopt);
+void			ft_optinst(t_opti **listopt);
+void			ft_supprlast(t_opti **listopt, t_opti *prev);
+void			ft_optirrb(t_opti **listopt);
+void			ft_optirb(t_opti **listopt);
+t_opti			*ft_pushbackstr(char *str, t_opti *listopt);
+
+
 
 #endif

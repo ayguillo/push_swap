@@ -6,16 +6,17 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/01 19:10:18 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/04 17:59:40 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void		ft_init(t_pslist **lista, t_pslist **listb)
+static void		ft_init(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 {
 	*lista = NULL;
 	*listb = NULL;
+	*listopt = NULL;
 }
 
 int				main(int ac, char **av)
@@ -23,9 +24,11 @@ int				main(int ac, char **av)
 	int			n;
 	t_pslist	*lista;
 	t_pslist	*listb;
+	t_opti		*listopt;
+	t_opti		*tmp;
 
 	n = 0;
-	ft_init(&lista, &listb);
+	ft_init(&lista, &listb, &listopt);
 	if (ac < 1)
 		return (0);
 	while (av[++n])
@@ -37,8 +40,15 @@ int				main(int ac, char **av)
 		}
 	printf("\x1b[32m Lista avant exec \n");
 	ft_printlist_nb(lista);
-	ft_insertsort(&lista, &listb);
-//	ft_quicksort(&lista, &listb, ft_pslstlen(lista));
+	//ft_shortsort(&lista, &listb, &listopt);
+	ft_insertsort(&lista, &listb, &listopt);
+	tmp = listopt;
+	ft_optinst(&tmp);
+	while (listopt)
+	{
+		printf("%s\n", listopt->str);
+		listopt = listopt->next;
+	}
 	printf("\x1b[31mExec programme \x1b[0m\n");
 	ft_printf("_________________a____________\n");
 	ft_printlist_nb(lista);

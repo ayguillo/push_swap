@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/01 19:10:23 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/04 15:42:53 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ static t_instructions	*ft_addinst(char *str,
 {
 	t_instructions	*nvel;
 	t_instructions	*tmp;
-
+	
 	if (!(nvel = malloc(sizeof(t_instructions))))
 		return (NULL);
 	if (!(nvel->str = ft_strdup(str)))
 	{
+		ft_strdel(&(nvel)->str);
 		free(nvel);
 		return (NULL);
 	}
@@ -58,7 +59,7 @@ static t_instructions	*ft_init_inst(void)
 static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 		t_pslist **lista, t_pslist **listb, char *str)
 {
-	while (ft_strcmp(inst->str, str))
+	while (ft_strcmp(inst->str, str) && inst)
 		inst = inst->next;
 	if (!ft_strcmp(str, "sa") || !ft_strcmp(str, "pb") ||
 		!ft_strcmp(str, "ra") || !ft_strcmp(str, "rra"))
@@ -77,7 +78,6 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 		ft_putstr("Error\n");
 		return (NULL);
 	}
-	ft_putendl(str);
 	return (inst);
 }
 
@@ -91,7 +91,6 @@ static t_instructions	*ft_delinst(t_instructions *list)
 		{
 			tmp = list;
 			list = list->next;
-			ft_strdel(&(tmp->str));
 			tmp = NULL;
 		}
 	}
@@ -99,16 +98,14 @@ static t_instructions	*ft_delinst(t_instructions *list)
 }
 
 void					ft_exec_inst(t_pslist **lista,
-		t_pslist **listb, char *str)
+		t_pslist **listb, char *str, t_opti **listopt)
 {
 	t_instructions	*inst;
 
 	if (!(inst = ft_init_inst()))
 		return ;
 	if (!(ft_dispatcher_inst(inst, lista, listb, str)))
-	{
-		ft_delinst(inst);
 		return ;
-	}
 	ft_delinst(inst);
+	*listopt = ft_pushbackstr(str, *listopt);
 }
