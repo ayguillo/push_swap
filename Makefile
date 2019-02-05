@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/02/04 14:30:33 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/02/05 11:21:37 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,15 +44,16 @@ OBJSCHECK = $(SRCSCHECK:.c=.o)
 
 OBJSPS = $(SRCSPS:.c=.o)
 
-all : $(LIBFT) $(NAMEPS) $(NAMECHECK) 
+all : $(LIBFT) $(NAMEPS) $(NAMECHECK)
+
 $(LIBFT) :
 	@make -C libft
 
-$(NAMECHECK) : $(OBJSCHECK) $(OBJS)
+$(NAMECHECK) : $(OBJSCHECK) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAMECHECK) $(OBJSCHECK) $(OBJS) libft/libft.a
 	@echo "$(GREEN)$(NAMECHECK) compiled ✔$(END)"
 
-$(NAMEPS) : $(OBJSPS) $(OBJS)
+$(NAMEPS) : $(OBJSPS) $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAMEPS) $(OBJSPS) $(OBJS) libft/libft.a
 	@echo "$(GREEN)$(NAMEPS) compiled ✔$(END)"
 

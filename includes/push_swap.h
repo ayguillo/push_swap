@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/04 16:26:35 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:14:30 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../libft/includes/libft.h"
 # include <stdio.h>
 
-/* 
+/*
  ** List manipulation
 */
 
@@ -97,7 +97,5 @@ void			ft_supprlast(t_opti **listopt, t_opti *prev);
 void			ft_optirrb(t_opti **listopt);
 void			ft_optirb(t_opti **listopt);
 t_opti			*ft_pushbackstr(char *str, t_opti *listopt);
-
-
 
 #endif

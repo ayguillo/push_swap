@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/04 17:59:40 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:50:53 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int				main(int ac, char **av)
 		}
 	printf("\x1b[32m Lista avant exec \n");
 	ft_printlist_nb(lista);
-	//ft_shortsort(&lista, &listb, &listopt);
 	ft_insertsort(&lista, &listb, &listopt);
 	tmp = listopt;
-	ft_optinst(&tmp);
+	//ft_optinst(&tmp);
 	while (listopt)
 	{
 		printf("%s\n", listopt->str);
