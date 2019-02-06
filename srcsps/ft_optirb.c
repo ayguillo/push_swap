@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 13:49:36 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/04 17:59:41 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/06 14:27:51 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,33 @@ void	ft_optirrb(t_opti **listopt)
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
 		tmp->str = "rrr";
+	}
+	*listopt = tmp;
+}
+
+void	ft_optidoublera(t_opti **listopt)
+{
+	t_opti	*tmp;
+	t_opti	*prev;
+	t_opti	*suppr;
+	t_opti	*suppr2;
+
+	tmp = *listopt;
+	prev = *listopt;
+	if ((*listopt)->next)
+		*listopt = (*listopt)->next;
+	if (((*listopt)->next) && !(ft_strcmp((*listopt)->next->str, "ra")))
+	{
+			suppr = tmp->next;
+			*listopt = (*listopt)->next;
+			suppr2 = *listopt;
+			*listopt = (*listopt)->next;
+			prev->next = (*listopt);
+			ft_strdel(&suppr->str);
+			ft_strdel(&suppr2->str);
+			free(suppr);
+			free(suppr2);
+			tmp->next = *listopt;
 	}
 	*listopt = tmp;
 }
