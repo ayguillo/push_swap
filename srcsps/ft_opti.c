@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:42:40 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 15:24:32 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/06 17:02:18 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void		ft_optinst(t_opti **listopt)
 
 	i = 0;
 	tmp = *listopt;
-	while (*listopt)
+	while ((*listopt)->next)
 	{
 		if (!(ft_strcmp((*listopt)->str, "ra")))
 			ft_optira(listopt);

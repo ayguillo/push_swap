@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/01/21 17:48:42 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/02/06 16:34:45 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCPRINTF = ft_printf/
 
 SRC = ft_atoi.c \
 	  ft_atol.c \
+	  ft_abs.c \
 	  ft_bzero.c \
 	  ft_isalnum.c \
 	  ft_isalpha.c \

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:09:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/24 14:25:23 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/06 16:31:05 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
+int				ft_abs(int a);
 int				ft_isdigitsign(char c);
 char			*ft_strcat(char *s1, const char *s2);
 int				ft_strcmp(const char *s1, const char *s2);
