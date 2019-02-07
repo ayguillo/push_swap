@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:06:04 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 11:48:27 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/07 11:12:37 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,9 @@ void		ft_printlist_nb(t_pslist *list)
 	t_pslist *head;
 
 	head = list;
-	ft_printf("____LIST_____\n");
 	while (head)
 	{
 		ft_printf("%i\n", head->content);
 		head = head->next;
 	}
-	ft_printf("____ENDLIST_____\n");
 }

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/01/31 15:07:36 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/07 11:09:47 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,11 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 		{
 			ft_delchecklist(&checker);
 			ft_freelist(lista, listb);
-			(*err)++;
+			(*err) = 1;
 			return ;
 		}
+		if ((*err) == -1)
+			ft_visu(*lista, *listb);
 		checker = tmp;
 		ft_strdel(&line);
 	}

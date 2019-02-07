@@ -6,60 +6,69 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 17:54:40 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/07 12:51:47 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_best_waya(t_pslist *lista, t_pslist *listb)
+static int	ft_best_waya(t_pslist *lista, int content)
 {
-	int			content;
-	t_pslist	*tmp;
-	int			rotate;
 	int			len;
+	int			count;
+	t_pslist	*tmp;
 
-	content = listb->content;
-	tmp = lista;
-	rotate = 0;
 	len = ft_pslstlen(lista);
-	while (tmp->next)
+	count = 0;
+	tmp = lista;
+	while (lista->next)
 	{
-		if (tmp->content < content && tmp->next->content > content)
-		{
-			rotate++;
+		if (lista->content < content && lista->next->content > content)
 			break;
-		}
-		tmp = tmp->next;
-		rotate++;
+		lista = lista->next;
+		count++;
 	}
-	return (rotate > len / 2 ? ((rotate - len / 2) * -1) : rotate);
+	if (count == len - 1)
+		return (tmp->content);
+	return (lista->next->content);
 }
 
 static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 {
-	t_pslist	*tmp;
 	int			rotate;
 	int			rotatea;
-	int			save;
 	int			tot;
+	t_pslist	*save;
 
-	tmp = listb;
 	rotate = 0;
 	tot = 2147483647;
-	while (tmp)
+	if (len == 1)
+		return  (listb->content);
+	while (listb)
 	{
-		rotatea = ft_best_waya(lista, tmp);
+		rotatea = ft_best_waya(lista, listb->content);
 		if (ft_abs(rotatea) + rotate < tot)
 		{
-			save = rotate;
+			save = listb;
 			tot = ft_abs(rotatea) + rotate;
 		}
-		tmp = tmp->next;
+		listb = listb->next;
 		rotate++;
-
 	}
-	return (save > len / 2 ? ((save - len / 2) * -1) : save);
+	return (save->content);
+}
+
+static int	ft_go(t_pslist *list, int content)
+{
+	int		i;
+
+	i = 0;
+	while (list->content != content)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i);
 }
 
 static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)
@@ -77,37 +86,40 @@ static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 
 void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 {
-	int	waya;
-	int	wayb;
-	int	lenb;
-	int	i;
+	int		contentb;
+	int		contenta;
+	int		min;
+	int		i;
 
 	while (ft_pslstlen(*lista) > 3)
 		ft_movemaxmin(lista, listb, listopt);
 	ft_shortsort(lista, listb, listopt);
-	ft_printlist_nb(*lista);
 	while (*listb)
 	{
-		ft_printlist_nb(*lista);
-		i = -1;
-		lenb = ft_pslstlen(*listb);
-		wayb = ft_best(*lista, *listb, lenb);
-		if (wayb < 0)
-			while (++i < ft_abs(wayb) - 1)
-				ft_exec_inst(lista, listb, "rrb", listopt);
-		else
-			while (++i < wayb)
+		contentb = ft_best(*lista, *listb, ft_pslstlen(*listb));
+		i = ft_go(*listb, contentb);
+		if (i <= ft_pslstlen(*listb) / 2)
+			while ((*listb)->content != contentb)
 				ft_exec_inst(lista, listb, "rb", listopt);
-		waya = ft_best_waya(*lista, *listb);
-		i = -1;
-		if (waya < 0)
-		{
-			while (++i < ft_abs(waya) - 1)
-				ft_exec_inst(lista, listb, "rra", listopt);
-		}
 		else
-			while (++i < waya)
+			while ((*listb)->content != contentb)
+				ft_exec_inst(lista, listb, "rrb", listopt);
+		contenta = ft_best_waya(*lista, contentb);
+		i = ft_go(*lista, contenta);
+		if (i <= ft_pslstlen(*lista) / 2)
+			while ((*lista)->content != contenta)
 				ft_exec_inst(lista, listb, "ra", listopt);
-		ft_exec_inst(lista, listb, "pa", listopt);
+		else
+			while ((*lista)->content != contenta)
+				ft_exec_inst(lista, listb, "rra", listopt);
+			ft_exec_inst(lista, listb, "pa", listopt);
 	}
+	i = 0;
+	min = ft_min(*lista, &i);
+	if (i <= ft_pslstlen(*lista) / 2)
+		while ((*lista)->content != min)
+			ft_exec_inst(lista, listb, "ra", listopt);
+	else
+		while ((*lista)->content != min)
+			ft_exec_inst(lista, listb, "rra", listopt);
 }
