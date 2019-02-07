@@ -6,11 +6,24 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 12:51:47 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:19:18 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static int	ft_go(t_pslist *list, int content)
+{
+	int		i;
+
+	i = 0;
+	while (list->content != content)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i);
+}
 
 static int	ft_best_waya(t_pslist *lista, int content)
 {
@@ -46,29 +59,20 @@ static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 		return  (listb->content);
 	while (listb)
 	{
-		rotatea = ft_best_waya(lista, listb->content);
-		if (ft_abs(rotatea) + rotate < tot)
+		rotatea = ft_go(lista, ft_best_waya(lista, listb->content));
+		if (rotatea > (ft_pslstlen(lista) / 2))
+			rotatea = rotatea - (ft_pslstlen(lista) / 2);
+		if (rotatea + rotate < tot)
 		{
 			save = listb;
-			tot = ft_abs(rotatea) + rotate;
+			tot = rotatea + rotate;
 		}
 		listb = listb->next;
 		rotate++;
+		if (rotate > (len / 2))
+			rotate = rotate - len / 2 + 1;
 	}
 	return (save->content);
-}
-
-static int	ft_go(t_pslist *list, int content)
-{
-	int		i;
-
-	i = 0;
-	while (list->content != content)
-	{
-		list = list->next;
-		i++;
-	}
-	return (i);
 }
 
 static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)

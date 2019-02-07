@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 11:09:47 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:28:15 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static t_check	*ft_dispatcher(t_check *checker, t_pslist **lista,
 	}
 	else
 	{
-		ft_delchecklist(&checker);
-		ft_strdel(&line);
 		ft_putstr("Error\n");
 		return (NULL);
 	}
@@ -94,12 +92,12 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 	tmp = checker;
 	while ((n = ft_gnl(0, &line)))
 	{
+		printf("line = %s\n", line);
 		while (ft_strcmp(line, checker->str) && checker->next)
 			checker = checker->next;
 		if (!(ft_dispatcher(checker, lista, listb, line)))
 		{
 			ft_delchecklist(&checker);
-			ft_freelist(lista, listb);
 			(*err) = 1;
 			return ;
 		}
