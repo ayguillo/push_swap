@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 14:17:29 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 16:54:30 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:46:40 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void	move(void **ptr)
 {
-	char	*tmp;
 	char	*str;
+	char	*tmp;
 
 	str = (char*)*ptr;
 	tmp = ft_strdup(ft_strchr(str, '\n') + 1);
 	free(*ptr);
+	ft_strdel(&tmp);
 	*ptr = tmp;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:30:38 by ayguillo          #+#    #+#             */
-/*   Updated: 2018/11/07 10:44:13 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:37:34 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@ char	*ft_strcpy(char *dst, const char *src)
 {
 	int n;
 
-	n = 0;
-	while (src[n])
-	{
+	n = -1;
+	while (src[++n])
 		dst[n] = src[n];
-		n++;
-	}
 	dst[n] = '\0';
 	return (dst);
 }

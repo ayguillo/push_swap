@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/07 10:19:20 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 17:35:04 by ayguillo         ###   ########.fr       */
+/*   Created: 2019/02/11 14:19:02 by ayguillo          #+#    #+#             */
+/*   Updated: 2019/02/11 14:21:07 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/libft.h"
 
-char	*ft_strdup(const char *s1)
+void	*ft_realloc(void *ptr, int size, int newsize)
 {
-	char	*dup;
+	char	*str;
+	char	*new;
+	int		i;
 
-	if (!(dup = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
+	str = (char*)ptr;
+	if (!(new = (char*)malloc(sizeof(char) * newsize + 1)))
+	{
+		if (ptr && size != 0)
+			free(ptr);
 		return (NULL);
-	dup = ft_strcpy(dup, s1);
-	return (dup);
+	}
+	i = -1;
+	while (++i < size)
+		*(new + i) = *(str + i);
+	while (i < newsize)
+		*(new + i++) = '\0';
+	if (ptr && size != 0)
+		free(ptr);
+	return (new);
 }
