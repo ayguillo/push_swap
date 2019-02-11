@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 12:57:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/04 14:40:39 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:34:32 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static void	ft_end(t_pslist **lista, t_pslist **listb, int min, t_opti **listop)
 {
 	while ((*lista)->content != min)
-		ft_exec_inst(lista, listb, "ra", listop);
+		ft_exec_inst(lista, listb, "ra\n", listop);
 	if (ft_verif(*lista) != 1)
 	{
-		ft_exec_inst(lista, listb, "pb", listop);
-		ft_exec_inst(lista, listb, "sa", listop);
-		ft_exec_inst(lista, listb, "pa", listop);
+		ft_exec_inst(lista, listb, "pb\n", listop);
+		ft_exec_inst(lista, listb, "sa\n", listop);
+		ft_exec_inst(lista, listb, "pa\n", listop);
 	}
 }
 
@@ -38,15 +38,15 @@ void		ft_shortsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 	if (ft_verif(*lista) == 1)
 		return ;
 	if (j > ft_pslstlen(*lista) / 2)
-		ft_exec_inst(lista, listb, "sa", listopt);
+		ft_exec_inst(lista, listb, "sa\n", listopt);
 	else if (i > ft_pslstlen(*lista) / 2)
 	{
 		if ((*lista)->content < (*lista)->next->content)
-			ft_exec_inst(lista, listb, "rra", listopt);
+			ft_exec_inst(lista, listb, "rra\n", listopt);
 		else
 		{
-			ft_exec_inst(lista, listb, "sa", listopt);
-			ft_exec_inst(lista, listb, "rra", listopt);
+			ft_exec_inst(lista, listb, "sa\n", listopt);
+			ft_exec_inst(lista, listb, "rra\n", listopt);
 		}
 	}
 	else

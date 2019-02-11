@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 17:19:18 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:33:54 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,9 @@ static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 	min = ft_min(*lista, &min);
 	max = ft_max(*lista, &max);
 	if ((*lista)->content == min || (*lista)->content == max)
-		ft_exec_inst(lista, listb, "ra", listopt);
+		ft_exec_inst(lista, listb, "ra\n", listopt);
 	else
-		ft_exec_inst(lista, listb, "pb", listopt);
+		ft_exec_inst(lista, listb, "pb\n", listopt);
 }
 
 void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
@@ -104,26 +104,26 @@ void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 		i = ft_go(*listb, contentb);
 		if (i <= ft_pslstlen(*listb) / 2)
 			while ((*listb)->content != contentb)
-				ft_exec_inst(lista, listb, "rb", listopt);
+				ft_exec_inst(lista, listb, "rb\n", listopt);
 		else
 			while ((*listb)->content != contentb)
-				ft_exec_inst(lista, listb, "rrb", listopt);
+				ft_exec_inst(lista, listb, "rrb\n", listopt);
 		contenta = ft_best_waya(*lista, contentb);
 		i = ft_go(*lista, contenta);
 		if (i <= ft_pslstlen(*lista) / 2)
 			while ((*lista)->content != contenta)
-				ft_exec_inst(lista, listb, "ra", listopt);
+				ft_exec_inst(lista, listb, "ra\n", listopt);
 		else
 			while ((*lista)->content != contenta)
-				ft_exec_inst(lista, listb, "rra", listopt);
+				ft_exec_inst(lista, listb, "rra\n", listopt);
 			ft_exec_inst(lista, listb, "pa", listopt);
 	}
 	i = 0;
 	min = ft_min(*lista, &i);
 	if (i <= ft_pslstlen(*lista) / 2)
 		while ((*lista)->content != min)
-			ft_exec_inst(lista, listb, "ra", listopt);
+			ft_exec_inst(lista, listb, "ra\n", listopt);
 	else
 		while ((*lista)->content != min)
-			ft_exec_inst(lista, listb, "rra", listopt);
+			ft_exec_inst(lista, listb, "rra\n", listopt);
 }

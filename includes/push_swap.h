@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 13:26:42 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:46:14 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void			ft_shortsort(t_pslist **lista, t_pslist **listb,
 		t_opti **listopt);
 void			ft_insertsort(t_pslist **lista, t_pslist **listb,
 		t_opti **listopt);
-void			ft_optinst(t_opti **listopt);
+t_opti			*ft_optinst(t_opti *listopt);
 void			ft_supprlast(t_opti **listopt, t_opti *prev);
 void			ft_optirrb(t_opti **listopt);
 void			ft_optirb(t_opti **listopt);

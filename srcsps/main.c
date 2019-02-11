@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 17:15:09 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:47:00 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,26 @@ static void		ft_init(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 	*listopt = NULL;
 }
 
-static void		ft_delopti(t_opti **listopt)
+static void		ft_delopti(t_opti *listopt)
 {
 	t_opti	*tmp;
 
-	while (*listopt)
+	while (listopt)
 	{
-		tmp = (*listopt)->next;
-		free(*listopt);
+		tmp = listopt;
+		tmp = tmp->next;
+		ft_strdel(&listopt->str);
 		free(listopt);
-		*listopt = tmp;
+		listopt = NULL;
+	}
+}
+
+static void		ft_affinst(t_opti *listopt)
+{
+	while (listopt)
+	{
+		ft_putstr(listopt->str);
+		listopt = listopt->next;
 	}
 }
 
@@ -38,7 +48,6 @@ int				main(int ac, char **av)
 	t_pslist	*lista;
 	t_pslist	*listb;
 	t_opti		*listopt;
-	t_opti		*tmp;
 	
 	n = 0;
 	ft_init(&lista, &listb, &listopt);
@@ -52,14 +61,9 @@ int				main(int ac, char **av)
 			return (-1);
 		}
 	ft_insertsort(&lista, &listb, &listopt);
-	tmp = listopt;
-	ft_optinst(&tmp);
-	while (listopt)
-	{
-		ft_putendl(listopt->str);
-		listopt = listopt->next;
-	}
+	listopt = ft_optinst(listopt);
+	ft_affinst(listopt);
 	ft_freelist(&lista, &listb);
-	ft_delopti(&listopt);
+	ft_delopti(listopt);
 	return (0);
 }

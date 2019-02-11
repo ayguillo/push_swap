@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:42:40 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 12:51:49 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 13:50:41 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static void	ft_optirra(t_opti **listopt)
 	t_opti	*prev;
 
 	tmp = *listopt;
-	while (!(ft_strcmp((*listopt)->str, "rra")) && (*listopt)->next)
+	while (!(ft_strcmp((*listopt)->str, "rra\n")) && (*listopt)->next)
 	{
 		prev = *listopt;
 		*listopt = (*listopt)->next;
 	}
-	if (!(ft_strcmp((*listopt)->str, "rrb")))
+	if (!(ft_strcmp((*listopt)->str, "rrb\n")))
 	{
 		if ((*listopt)->next)
 		{
@@ -71,7 +71,7 @@ static void	ft_optirra(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rrr";
+		tmp->str = "rrr\n";
 	}
 	*listopt = tmp;
 }
@@ -83,12 +83,12 @@ static void	ft_optira(t_opti **listopt)
 	t_opti	*prev;
 
 	tmp = *listopt;
-	while (!(ft_strcmp((*listopt)->str, "ra")) && (*listopt)->next)
+	while (!(ft_strcmp((*listopt)->str, "ra\n")) && (*listopt)->next)
 	{
 		prev = *listopt;
 		*listopt = (*listopt)->next;
 	}
-	if (!(ft_strcmp((*listopt)->str, "rb")))
+	if (!(ft_strcmp((*listopt)->str, "rb\n")))
 	{
 		if ((*listopt)->next)
 		{
@@ -100,29 +100,31 @@ static void	ft_optira(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rr";
+		tmp->str = "rr\n";
 	}
 	*listopt = tmp;
 }
 
-void		ft_optinst(t_opti **listopt)
+t_opti		*ft_optinst(t_opti *listopt)
 {
 	int		i;
 	t_opti	*tmp;
 
 	i = 0;
-	tmp = *listopt;
-	while ((*listopt)->next)
+	tmp = listopt;
+	while (listopt->next)
 	{
-		if (!(ft_strcmp((*listopt)->str, "ra")))
-			ft_optira(listopt);
-		else if (!(ft_strcmp((*listopt)->str, "rra")))
-			ft_optirra(listopt);
-		else if (!(ft_strcmp((*listopt)->str, "rb")))
-			ft_optirb(listopt);
-		else if (!(ft_strcmp((*listopt)->str, "rrb")))
-			ft_optirrb(listopt);
-		*listopt = (*listopt)->next;
+		if (!(ft_strcmp(listopt->str, "ra\n")))
+			ft_optira(&listopt);
+		else if (!(ft_strcmp(listopt->str, "rra\n")))
+			ft_optirra(&listopt);
+		else if (!(ft_strcmp(listopt->str, "rb\n")))
+			ft_optirb(&listopt);
+		else if (!(ft_strcmp(listopt->str, "rrb\n")))
+			ft_optirrb(&listopt);
+		listopt = listopt->next;
 		i++;
 	}
+	listopt = tmp;
+	return (listopt);
 }
