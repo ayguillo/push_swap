@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 13:33:54 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 14:14:01 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 		else
 			while ((*lista)->content != contenta)
 				ft_exec_inst(lista, listb, "rra\n", listopt);
-			ft_exec_inst(lista, listb, "pa", listopt);
+			ft_exec_inst(lista, listb, "pa\n", listopt);
 	}
 	i = 0;
 	min = ft_min(*lista, &i);

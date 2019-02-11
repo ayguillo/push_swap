@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 14:10:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 13:22:40 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:04:10 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,14 @@ static void	ft_init(t_pslist **lista, t_pslist **listb, char **line, int *j)
 void		ft_delchecklist(t_check **list)
 {
 	t_check		*tmp;
-	t_check		*head;
 
 	while (*list)
 	{
-		tmp = (*list)->next;
-		head = *list;
-		ft_strdel(&head->str);
-		free(head);
-		*list = tmp;
+		tmp = *list;
+		*list = (*list)->next;
+		ft_strdel(&tmp->str);
+		free(tmp);
+		tmp = NULL;
 	}
 }
 
@@ -57,7 +56,6 @@ int			main(int ac, char **av)
 		if (ft_parsing(av[n], &lista, &listb) > 0 ||
 				!(lista = ft_addr(lista, ft_atoi(av[n]))))
 		{
-			ft_strdel(&line);
 			ft_freelist(&lista, &listb);
 			ft_putstr("Error\n");
 			return (-1);
@@ -72,6 +70,5 @@ int			main(int ac, char **av)
 	}
 	ft_verif(lista) == 1 ? ft_putstr("OK\n") : ft_putstr("KO\n");
 	ft_freelist(&lista, &listb);
-	ft_strdel(&line);
 	return (0);
 }

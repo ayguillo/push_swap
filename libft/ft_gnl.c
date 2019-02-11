@@ -1,63 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   ft_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/19 15:22:02 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 17:45:20 by ayguillo         ###   ########.fr       */
+/*   Created: 2019/02/11 14:17:29 by ayguillo          #+#    #+#             */
+/*   Updated: 2019/02/11 16:54:30 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "includes/libft.h"
 
-static int	ft_new_join(char **line, char *buff)
+void	move(void **ptr)
 {
 	char	*tmp;
-	char	*dup;
+	char	*str;
 
-	tmp = *line;
-	if (!(dup = ft_strcdup(buff, '\n')))
-		return (-1);
-	*line = ft_strjoin(tmp, dup);
-	ft_strdel(&dup);
-	return (1);
+	str = (char*)*ptr;
+	tmp = ft_strdup(ft_strchr(str, '\n') + 1);
+	free(*ptr);
+	*ptr = tmp;
 }
 
-static int	ft_end(char *buff, int ret, char **line)
+t_list	*get_actual_list(t_list **list, int fd)
 {
-	if (ft_strchr(buff, '\n') != NULL && buff)
-		ft_memmove(buff, ft_strchr(buff, '\n') + 1,
-				ft_strlen(ft_strchr(buff, '\n')));
-	else
-		buff[0] = '\0';
-	if (ret == 0 && !ft_strcmp(*line, "") && buff[0] == '\0')
-		return (0);
-	return (1);
-}
+	t_list	*tempo;
 
-int			ft_gnl(const int fd, char **line)
-{
-	static char		buff[BUFF_SIZE + 1];
-	int				ret;
-	int				end;
-
-	ret = BUFF_SIZE;
-	if (!line || fd == -1 || !(*line = (char*)malloc(sizeof(char) * 1)))
-		return (-1);
-	*line = "\0";
-	while (ft_strchr(buff, '\n') == NULL && ret == BUFF_SIZE)
+	tempo = *list;
+	while (tempo)
 	{
-		ft_new_join(line, buff);
-		if ((ret = read(fd, buff, BUFF_SIZE)) == -1)
-		{
-			ft_strdel(line);
-			return (-1);
-		}
-		buff[ret] = '\0';
+		if ((int)tempo->content_size == fd)
+			return (tempo);
+		tempo = tempo->next;
 	}
-	ft_new_join(line, buff);
-	end = ft_end(buff, ret, line);
-	return (end);
+	tempo = ft_lstnew(NULL, fd);
+	tempo->content_size = fd;
+	ft_lstadd(list, tempo);
+	tempo = *list;
+	return (tempo);
+}
+
+int		ft_gnl(const int fd, char **line)
+{
+	static t_list	*list;
+	char			buff[BUFF_SIZE + 1];
+	int				r;
+	int				i;
+	t_list			*actual;
+
+	if (fd < 0 || !line || read(fd, buff, 0) < 0)
+		return (-1);
+	actual = get_actual_list(&list, fd);
+	while ((r = read(fd, buff, BUFF_SIZE)))
+	{
+		buff[r] = '\0';
+		i = ft_strlen(actual->content);
+		if (!(actual->content = ft_realloc(actual->content, i, i + BUFF_SIZE)))
+			return (-1);
+		actual->content = ft_strcat(actual->content, buff);
+		if (ft_strchr(actual->content, '\n'))
+			break ;
+	}
+	if (r < BUFF_SIZE && !ft_strlen(actual->content))
+		return (0);
+	*line = ft_strcdup(actual->content, '\n');
+	(ft_strchr(actual->content, '\n')) ?
+		(move(&actual->content)) : ft_strclr(actual->content);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:06:04 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/07 11:12:37 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 16:36:23 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,17 @@ t_pslist	*ft_addr(t_pslist *list, int nw)
 	while (tmp->next)
 	{
 		if (tmp->content == nvel->content)
+		{
+			free(nvel);
 			return (NULL);
+		}
 		tmp = tmp->next;
 	}
 	if (tmp->content == nvel->content)
+	{
+		free(nvel);
 		return (NULL);
+	}
 	tmp->next = nvel;
 	return (list);
 }

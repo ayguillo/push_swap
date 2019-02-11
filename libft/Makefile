@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/02/06 16:34:45 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/02/11 14:20:17 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRC = ft_atoi.c \
 	  ft_strdel.c \
 	  ft_strnew.c \
 	  ft_memalloc.c \
+	  ft_realloc.c \
 	  ft_memdel.c \
 	  ft_memset.c\
 	  ft_putstr.c \

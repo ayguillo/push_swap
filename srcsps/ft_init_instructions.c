@@ -6,26 +6,36 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 13:39:28 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 16:01:05 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void				ft_delinst(t_instructions *list)
+{
+	t_instructions	*tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		ft_strdel(&tmp->str);
+		free(tmp);
+		tmp = NULL;
+	}
+}
 
 static t_instructions	*ft_addinst(char *str,
 		void (*ft_ptr_instr)(t_pslist **, t_pslist **), t_instructions *list)
 {
 	t_instructions	*nvel;
 	t_instructions	*tmp;
-	char			*dup;
-	
+
 	if (!(nvel = malloc(sizeof(t_instructions))))
 		return (NULL);
-	if (!(dup = ft_strdup(str)))
-		return (NULL);
-	if (!(nvel->str = dup))
+	if (!(nvel->str = ft_strdup(str)))
 	{
-		ft_strdel(&dup);
 		ft_strdel(&(nvel)->str);
 		free(nvel);
 		return (NULL);
@@ -46,7 +56,7 @@ static t_instructions	*ft_init_inst(void)
 	t_instructions	*inst;
 
 	inst = NULL;
-	inst = ft_addinst("sa\n", ft_s, inst);
+	inst = ft_addinst("sa\n", ft_s, NULL);
 	inst = ft_addinst("sb\n", ft_s, inst);
 	inst = ft_addinst("ss\n", ft_s, inst);
 	inst = ft_addinst("pa\n", ft_p, inst);
@@ -66,10 +76,10 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	while (ft_strcmp(inst->str, str) && inst)
 		inst = inst->next;
 	if (!ft_strcmp(str, "sa\n") || !ft_strcmp(str, "pb\n") ||
-		!ft_strcmp(str, "ra\n") || !ft_strcmp(str, "rra\n"))
+			!ft_strcmp(str, "ra\n") || !ft_strcmp(str, "rra\n"))
 		inst->ft_instruction(lista, listb);
 	else if (!ft_strcmp(str, "sb\n") || !ft_strcmp(str, "pa\n") ||
-		!ft_strcmp(str, "rb\n") || !ft_strcmp(str, "rrb\n"))
+			!ft_strcmp(str, "rb\n") || !ft_strcmp(str, "rrb\n"))
 		inst->ft_instruction(listb, lista);
 	else if (!ft_strcmp(str, "ss\n") || !ft_strcmp(str, "rr\n") ||
 			!ft_strcmp(str, "rrr\n"))
@@ -79,29 +89,14 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	}
 	else
 	{
+		ft_delinst(inst);
 		ft_putstr("Error\n");
 		return (NULL);
 	}
 	return (inst);
 }
 
-static t_instructions	*ft_delinst(t_instructions *list)
-{
-	t_instructions	*tmp;
 
-	if (list)
-	{
-		while (list)
-		{
-			tmp = list;
-			list = list->next;
-			ft_strdel(&tmp->str);
-			free(tmp);
-			tmp = NULL;
-		}
-	}
-	return (NULL);
-}
 
 void					ft_exec_inst(t_pslist **lista,
 		t_pslist **listb, char *str, t_opti **listopt)
@@ -111,11 +106,7 @@ void					ft_exec_inst(t_pslist **lista,
 	if (!(inst = ft_init_inst()))
 		return ;
 	if (!(ft_dispatcher_inst(inst, lista, listb, str)))
-	{
-		ft_freelist(lista, listb);
-		ft_delinst(inst);
 		return ;
-	}
 	ft_delinst(inst);
 	*listopt = ft_pushbackstr(str, *listopt);
 }

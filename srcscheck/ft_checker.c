@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 13:20:49 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 17:04:08 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 	tmp = checker;
 	while ((n = ft_gnl(0, &line)))
 	{
-	//	printf("line = %s\n", line);
 		while (ft_strcmp(line, checker->str) && checker->next)
 			checker = checker->next;
 		if (!(ft_dispatcher(checker, lista, listb, line)))
 		{
-			ft_delchecklist(&checker);
+			checker = tmp;
 			ft_strdel(&line);
+			ft_delchecklist(&checker);
 			(*err) = 1;
 			return ;
 		}
@@ -107,6 +107,6 @@ void			ft_checker(char *line, t_pslist **lista, t_pslist **listb,
 		checker = tmp;
 		ft_strdel(&line);
 	}
-	ft_strdel(&line);
+	checker = tmp;
 	ft_delchecklist(&checker);
 }

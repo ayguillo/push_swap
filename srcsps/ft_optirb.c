@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 13:49:36 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 14:27:51 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 14:06:44 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_optirb(t_opti **listopt)
 	t_opti	*prev;
 
 	tmp = *listopt;
-	while (!(ft_strcmp((*listopt)->str, "rb")) && (*listopt)->next)
+	while (!(ft_strcmp((*listopt)->str, "rb\n")) && (*listopt)->next)
 	{
 		prev = *listopt;
 		*listopt = (*listopt)->next;
 	}
-	if (!(ft_strcmp((*listopt)->str, "ra")))
+	if (!(ft_strcmp((*listopt)->str, "ra\n")))
 	{
 		if ((*listopt)->next)
 		{
@@ -36,7 +36,7 @@ void	ft_optirb(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rr";
+		tmp->str = "rr\n";
 	}
 	*listopt = tmp;
 }
@@ -48,12 +48,12 @@ void	ft_optirrb(t_opti **listopt)
 	t_opti	*prev;
 
 	tmp = *listopt;
-	while (!(ft_strcmp((*listopt)->str, "rrb")) && (*listopt)->next)
+	while (!(ft_strcmp((*listopt)->str, "rrb\n")) && (*listopt)->next)
 	{
 		prev = *listopt;
 		*listopt = (*listopt)->next;
 	}
-	if (!(ft_strcmp((*listopt)->str, "rra")))
+	if (!(ft_strcmp((*listopt)->str, "rra\n")))
 	{
 		if ((*listopt)->next)
 		{
@@ -65,7 +65,7 @@ void	ft_optirrb(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rrr";
+		tmp->str = "rrr\n";
 	}
 	*listopt = tmp;
 }
@@ -81,7 +81,7 @@ void	ft_optidoublera(t_opti **listopt)
 	prev = *listopt;
 	if ((*listopt)->next)
 		*listopt = (*listopt)->next;
-	if (((*listopt)->next) && !(ft_strcmp((*listopt)->next->str, "ra")))
+	if (((*listopt)->next) && !(ft_strcmp((*listopt)->next->str, "ra\n")))
 	{
 			suppr = tmp->next;
 			*listopt = (*listopt)->next;

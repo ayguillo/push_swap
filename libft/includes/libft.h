@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 10:09:22 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/06 16:31:05 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/11 14:20:00 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			ft_strclr(char *s);
 void			ft_strdel(char **as);
 char			*ft_strnew(size_t size);
 void			*ft_memalloc(size_t size);
+void			*ft_realloc(void *ptr, int size, int newsize);
 void			ft_memdel(void **ap);
 void			ft_putstr(char const *s);
 void			ft_striter(char *s, void(*f)(char*));
