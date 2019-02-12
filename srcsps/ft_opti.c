@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:42:40 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 15:45:15 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:26:23 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void		ft_supprlast(t_opti **listopt, t_opti *prev)
 
 	tmp = *listopt;
 	prev->next = NULL;
+	ft_strdel(&tmp->str);
 	free(tmp);
 }
 
@@ -52,6 +53,7 @@ static void	ft_optirra(t_opti **listopt)
 	t_opti	*tmp;
 	t_opti	*suppr;
 	t_opti	*prev;
+	char	*dup;
 
 	tmp = *listopt;
 	while (!(ft_strcmp((*listopt)->str, "rra\n")) && (*listopt)->next)
@@ -71,7 +73,10 @@ static void	ft_optirra(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rrr\n";
+		if (!(dup = ft_strdup("rrr\n")))
+			return ;
+		tmp->str = dup;
+		ft_strdel(&dup);
 	}
 	*listopt = tmp;
 }
@@ -81,6 +86,7 @@ static void	ft_optira(t_opti **listopt)
 	t_opti	*tmp;
 	t_opti	*suppr;
 	t_opti	*prev;
+	char	*dup;
 
 	tmp = *listopt;
 	while (!(ft_strcmp((*listopt)->str, "ra\n")) && (*listopt)->next)
@@ -100,7 +106,10 @@ static void	ft_optira(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rr\n";
+		if (!(dup = ft_strdup("rr\n")))
+			return ;
+		tmp->str = dup;
+		ft_strdel(&dup);
 	}
 	*listopt = tmp;
 }

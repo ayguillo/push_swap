@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:53:06 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:51:46 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_go(t_pslist *list, int content)
 	int		i;
 
 	i = 0;
-	while (list->content != content)
+	while (list && list->content != content)
 	{
 		list = list->next;
 		i++;
@@ -28,28 +28,44 @@ static int	ft_go(t_pslist *list, int content)
 static int	ft_best_waya(t_pslist *lista, int content)
 {
 	int			len;
-	int			count;
 	t_pslist	*tmp;
+	int			count;
 
 	len = ft_pslstlen(lista);
-	count = 0;
 	tmp = lista;
-	while (lista->next)
+	count = 0;
+	while (lista)
 	{
-		if (lista->content < content && lista->next->content > content)
+		if (lista->content - content > 0)
+		{
+			while (lista && lista->content - content > 0)
+			{
+				count++;
+				lista = lista->next;
+			}
+
+			break;
+		}
+		else if (lista->content - content < 0)
+		{
+			while (lista && lista->content - content < 0)
+			{
+				count++;
+				lista = lista->next;
+			}
 			break ;
-		lista = lista->next;
-		count++;
+		}
 	}
-	if (count == len - 1)
+	if (count == (len))
 		return (tmp->content);
-	return (lista->next->content);
+	return (lista->content);
 }
 
 static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 {
 	int			rotate;
 	int			rotatea;
+	int			contenta;
 	int			tot;
 	t_pslist	*save;
 
@@ -59,10 +75,11 @@ static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 		return (listb->content);
 	while (listb)
 	{
-		rotatea = ft_go(lista, ft_best_waya(lista, listb->content));
+		contenta = ft_best_waya(lista, listb->content);
+		rotatea = ft_go(lista, contenta);
 		if (rotatea > (ft_pslstlen(lista) / 2))
 			rotatea = rotatea - (ft_pslstlen(lista) / 2);
-		if (rotatea + rotate < tot)
+		if (rotate + rotatea < tot)
 		{
 			save = listb;
 			tot = rotatea + rotate;

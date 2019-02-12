@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 13:49:36 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:52:22 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:27:39 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_optirb(t_opti **listopt)
 	t_opti	*tmp;
 	t_opti	*suppr;
 	t_opti	*prev;
+	char	*dup;
 
 	tmp = *listopt;
 	while (!(ft_strcmp((*listopt)->str, "rb\n")) && (*listopt)->next)
@@ -36,7 +37,10 @@ void	ft_optirb(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rr\n";
+		if (!(dup = ft_strdup("rr\n")))
+			return ;
+		tmp->str = dup;
+		//ft_strdel(&dup);
 	}
 	*listopt = tmp;
 }
@@ -46,6 +50,7 @@ void	ft_optirrb(t_opti **listopt)
 	t_opti	*tmp;
 	t_opti	*suppr;
 	t_opti	*prev;
+	char	*dup;
 
 	tmp = *listopt;
 	while (!(ft_strcmp((*listopt)->str, "rrb\n")) && (*listopt)->next)
@@ -65,34 +70,10 @@ void	ft_optirrb(t_opti **listopt)
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rrr\n";
-	}
-	*listopt = tmp;
-}
-
-void	ft_optidoublera(t_opti **listopt)
-{
-	t_opti	*tmp;
-	t_opti	*prev;
-	t_opti	*suppr;
-	t_opti	*suppr2;
-
-	tmp = *listopt;
-	prev = *listopt;
-	if ((*listopt)->next)
-		*listopt = (*listopt)->next;
-	if (((*listopt)->next) && !(ft_strcmp((*listopt)->next->str, "ra\n")))
-	{
-		suppr = tmp->next;
-		*listopt = (*listopt)->next;
-		suppr2 = *listopt;
-		*listopt = (*listopt)->next;
-		prev->next = (*listopt);
-		ft_strdel(&suppr->str);
-		ft_strdel(&suppr2->str);
-		free(suppr);
-		free(suppr2);
-		tmp->next = *listopt;
+		if (!(dup = ft_strdup("rrr\n")))
+			return ;
+		tmp->str = dup;
+	//	ft_strdel(&dup);
 	}
 	*listopt = tmp;
 }
