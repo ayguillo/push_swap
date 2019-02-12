@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:54:34 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:06:18 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		ft_init(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 	*listopt = NULL;
 }
 
-static void		ft_delopti(t_opti *listopt)
+/*static void		ft_delopti(t_opti *listopt)
 {
 	t_opti	*tmp;
 
@@ -31,7 +31,7 @@ static void		ft_delopti(t_opti *listopt)
 		free(tmp);
 		tmp = NULL;
 	}
-}
+}*/
 
 int				main(int ac, char **av)
 {
@@ -65,6 +65,6 @@ int				main(int ac, char **av)
 	}
 	listopt = tmp;
 	ft_freelist(&lista, &listb);
-	ft_delopti(listopt);
+//	ft_delopti(listopt);
 	return (0);
 }
