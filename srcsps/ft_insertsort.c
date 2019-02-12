@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:53:06 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:00:41 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,12 @@ static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 		return (listb->content);
 	while (listb)
 	{
-		rotatea = ft_go(lista, ft_best_waya(lista, listb->content));
-		if (rotatea > (ft_pslstlen(lista) / 2))
+		rotatea = ft_best_waya(lista, listb->content);
+		if (ft_abs(rotatea) > (ft_pslstlen(lista) / 2))
+		{
+			rotatea = ft_abs(rotatea);
 			rotatea = rotatea - (ft_pslstlen(lista) / 2);
+		}
 		if (rotatea + rotate < tot)
 		{
 			save = listb;
