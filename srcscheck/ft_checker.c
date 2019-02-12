@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 14:56:25 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 17:46:48 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:44:01 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ static t_check	*ft_init_checker(void)
 static t_check	*ft_dispatcher(t_check *checker, t_pslist **lista,
 		t_pslist **listb, char *line)
 {
-	if (!ft_strcmp(line, "sa") || !ft_strcmp(line, "pb") ||
-			!ft_strcmp(line, "ra") || !ft_strcmp(line, "rra"))
+	if (!ft_strcmp(line, "sa") || !ft_strcmp(line, "pb")
+			|| !ft_strcmp(line, "ra") || !ft_strcmp(line, "rra"))
 		checker->ft_instruction1(lista, listb);
-	else if (!ft_strcmp(line, "sb") || !ft_strcmp(line, "pa") ||
-			!ft_strcmp(line, "rb") || !ft_strcmp(line, "rrb"))
+	else if (!ft_strcmp(line, "sb") || !ft_strcmp(line, "pa")
+			|| !ft_strcmp(line, "rb") || !ft_strcmp(line, "rrb"))
 		checker->ft_instruction1(listb, lista);
-	else if (!ft_strcmp(line, "ss") || !ft_strcmp(line, "rr") ||
-			!ft_strcmp(line, "rrr"))
+	else if (!ft_strcmp(line, "ss") || !ft_strcmp(line, "rr")
+			|| !ft_strcmp(line, "rrr"))
 	{
 		checker->ft_instruction1(lista, listb);
 		checker->ft_instruction1(listb, lista);
