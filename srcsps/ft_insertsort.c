@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 14:14:01 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:53:06 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_best_waya(t_pslist *lista, int content)
 	while (lista->next)
 	{
 		if (lista->content < content && lista->next->content > content)
-			break;
+			break ;
 		lista = lista->next;
 		count++;
 	}
@@ -56,7 +56,7 @@ static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 	rotate = 0;
 	tot = 2147483647;
 	if (len == 1)
-		return  (listb->content);
+		return (listb->content);
 	while (listb)
 	{
 		rotatea = ft_go(lista, ft_best_waya(lista, listb->content));
@@ -116,7 +116,7 @@ void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 		else
 			while ((*lista)->content != contenta)
 				ft_exec_inst(lista, listb, "rra\n", listopt);
-			ft_exec_inst(lista, listb, "pa\n", listopt);
+		ft_exec_inst(lista, listb, "pa\n", listopt);
 	}
 	i = 0;
 	min = ft_min(*lista, &i);

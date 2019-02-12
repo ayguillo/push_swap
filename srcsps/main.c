@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 19:34:49 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 16:36:30 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:54:34 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int				main(int ac, char **av)
 	t_pslist	*listb;
 	t_opti		*listopt;
 	t_opti		*tmp;
-	
+
 	n = 0;
 	ft_init(&lista, &listb, &listopt);
 	if (ac < 2)

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 16:01:05 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:51:56 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,6 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	}
 	return (inst);
 }
-
-
 
 void					ft_exec_inst(t_pslist **lista,
 		t_pslist **listb, char *str, t_opti **listopt)

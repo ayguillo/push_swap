@@ -6,42 +6,11 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:15:34 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/04 16:27:44 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/12 14:54:32 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int		ft_med(t_pslist *list, int len)
-{
-	int			i;
-	t_pslist	*tmp;
-	int			tab[len];
-	int			tmp2;
-
-	i = -1;
-	tmp = list;
-	while (++i < len)
-	{
-		tab[i] = tmp->content;
-		tmp = tmp->next;
-	}
-	i = 0;
-	while (i < len - 1)
-	{
-		if (tab[i] > tab[i + 1])
-		{
-			tmp2 = tab[i];
-			tab[i] = tab[i + 1];
-			tab[i + 1] = tmp2;
-			i = 0;
-		}
-		else
-			i++;
-	}
-	i = -1;
-	return (tab[0]);
-}
 
 int		ft_min(t_pslist *list, int *i)
 {
