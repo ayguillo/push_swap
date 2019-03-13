@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:06:04 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:50:22 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:35:24 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_pslist	*ft_addr(t_pslist *list, int nw)
 	}
 	if (tmp->content == nvel->content)
 	{
+		ft_delallst(&list);
 		free(nvel);
 		return (NULL);
 	}

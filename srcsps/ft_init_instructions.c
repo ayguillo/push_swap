@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 10:54:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:51:56 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:43:13 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static void				ft_delinst(t_instructions *list)
 {
 	t_instructions	*tmp;
 
-	while (list)
+	if (list)
 	{
-		tmp = list;
-		list = list->next;
-		ft_strdel(&tmp->str);
-		free(tmp);
-		tmp = NULL;
+		while (list)
+		{
+			tmp = list;
+			list = list->next;
+			ft_strdel(&tmp->str);
+			free(tmp);
+			tmp = NULL;
+		}
 	}
 }
 
@@ -76,10 +79,10 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	while (ft_strcmp(inst->str, str) && inst)
 		inst = inst->next;
 	if (!ft_strcmp(str, "sa\n") || !ft_strcmp(str, "pb\n") ||
-			!ft_strcmp(str, "ra\n") || !ft_strcmp(str, "rra\n"))
+		!ft_strcmp(str, "ra\n") || !ft_strcmp(str, "rra\n"))
 		inst->ft_instruction(lista, listb);
 	else if (!ft_strcmp(str, "sb\n") || !ft_strcmp(str, "pa\n") ||
-			!ft_strcmp(str, "rb\n") || !ft_strcmp(str, "rrb\n"))
+		!ft_strcmp(str, "rb\n") || !ft_strcmp(str, "rrb\n"))
 		inst->ft_instruction(listb, lista);
 	else if (!ft_strcmp(str, "ss\n") || !ft_strcmp(str, "rr\n") ||
 			!ft_strcmp(str, "rrr\n"))
@@ -89,7 +92,6 @@ static t_instructions	*ft_dispatcher_inst(t_instructions *inst,
 	}
 	else
 	{
-		ft_delinst(inst);
 		ft_putstr("Error\n");
 		return (NULL);
 	}
@@ -106,5 +108,6 @@ void					ft_exec_inst(t_pslist **lista,
 	if (!(ft_dispatcher_inst(inst, lista, listb, str)))
 		return ;
 	ft_delinst(inst);
-	*listopt = ft_pushbackstr(str, *listopt);
+	if (!(*listopt = ft_pushbackstr(str, *listopt)))
+		ft_delopti(*listopt);
 }

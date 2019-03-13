@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/04 11:42:40 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 15:45:15 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 13:51:04 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,18 @@ t_opti		*ft_pushbackstr(char *str, t_opti *listopt)
 {
 	t_opti		*nvel;
 	t_opti		*tmp;
-	char		*dup;
 
-	if (!(dup = ft_strdup(str)))
-		return (NULL);
+	tmp = listopt;
 	if (!(nvel = malloc(sizeof(t_opti))))
 		return (NULL);
-	if (!(nvel->str = dup))
+	if (!(nvel->str = ft_strdup(str)))
 	{
-		ft_strdel(&dup);
 		free(nvel);
 		return (NULL);
 	}
 	nvel->next = NULL;
 	if (!listopt)
 		return (nvel);
-	tmp = listopt;
 	while (tmp->next)
 		tmp = tmp->next;
 	tmp->next = nvel;
@@ -50,7 +46,6 @@ void		ft_supprlast(t_opti **listopt, t_opti *prev)
 static void	ft_optirra(t_opti **listopt)
 {
 	t_opti	*tmp;
-	t_opti	*suppr;
 	t_opti	*prev;
 
 	tmp = *listopt;
@@ -62,16 +57,12 @@ static void	ft_optirra(t_opti **listopt)
 	if (!(ft_strcmp((*listopt)->str, "rrb\n")))
 	{
 		if ((*listopt)->next)
-		{
-			suppr = *listopt;
-			*listopt = (*listopt)->next;
-			prev->next = *listopt;
-			free(suppr);
-		}
+			ft_supproneel(listopt, prev);
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rrr\n";
+		if (!(tmp->str = ft_strdup("rrr\n")))
+			return ;
 	}
 	*listopt = tmp;
 }
@@ -79,7 +70,6 @@ static void	ft_optirra(t_opti **listopt)
 static void	ft_optira(t_opti **listopt)
 {
 	t_opti	*tmp;
-	t_opti	*suppr;
 	t_opti	*prev;
 
 	tmp = *listopt;
@@ -91,26 +81,20 @@ static void	ft_optira(t_opti **listopt)
 	if (!(ft_strcmp((*listopt)->str, "rb\n")))
 	{
 		if ((*listopt)->next)
-		{
-			suppr = *listopt;
-			*listopt = (*listopt)->next;
-			prev->next = *listopt;
-			free(suppr);
-		}
+			ft_supproneel(listopt, prev);
 		else
 			ft_supprlast(listopt, prev);
 		ft_strdel(&tmp->str);
-		tmp->str = "rr\n";
+		if (!(tmp->str = ft_strdup("rr\n")))
+			return ;
 	}
 	*listopt = tmp;
 }
 
 t_opti		*ft_optinst(t_opti *listopt)
 {
-	int		i;
 	t_opti	*tmp;
 
-	i = 0;
 	tmp = listopt;
 	while (listopt->next)
 	{
@@ -123,7 +107,6 @@ t_opti		*ft_optinst(t_opti *listopt)
 		else if (!(ft_strcmp(listopt->str, "rrb\n")))
 			ft_optirrb(&listopt);
 		listopt = listopt->next;
-		i++;
 	}
 	listopt = tmp;
 	return (listopt);

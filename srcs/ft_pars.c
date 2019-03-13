@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 18:55:55 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 14:50:19 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 14:52:01 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int		ft_parsing(char *str, t_pslist **lista, t_pslist **listb)
 	n = -1;
 	re = 0;
 	sign = 0;
+	if (str[0] == '\0')
+		re++;
 	while (str[++n])
 	{
 		if ((str[0] == '-' || str[0] == '+') && sign == 0)

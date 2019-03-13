@@ -6,26 +6,13 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 13:31:39 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/12 18:00:41 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 14:18:33 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static int	ft_go(t_pslist *list, int content)
-{
-	int		i;
-
-	i = 0;
-	while (list->content != content)
-	{
-		list = list->next;
-		i++;
-	}
-	return (i);
-}
-
-static int	ft_best_waya(t_pslist *lista, int content)
+int			ft_best_waya(t_pslist *lista, int content)
 {
 	int			len;
 	int			count;
@@ -46,7 +33,7 @@ static int	ft_best_waya(t_pslist *lista, int content)
 	return (lista->next->content);
 }
 
-static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
+int			ft_best(t_pslist *lista, t_pslist *listb, int len)
 {
 	int			rotate;
 	int			rotatea;
@@ -60,22 +47,28 @@ static int	ft_best(t_pslist *lista, t_pslist *listb, int len)
 	while (listb)
 	{
 		rotatea = ft_best_waya(lista, listb->content);
-		if (ft_abs(rotatea) > (ft_pslstlen(lista) / 2))
-		{
-			rotatea = ft_abs(rotatea);
-			rotatea = rotatea - (ft_pslstlen(lista) / 2);
-		}
-		if (rotatea + rotate < tot)
+		if (ft_abs(rotatea) + rotate < tot)
 		{
 			save = listb;
-			tot = rotatea + rotate;
+			tot = ft_abs(rotatea) + rotate;
 		}
 		listb = listb->next;
 		rotate++;
-		if (rotate > (len / 2))
-			rotate = rotate - len / 2 + 1;
 	}
 	return (save->content);
+}
+
+int			ft_go(t_pslist *list, int content)
+{
+	int		i;
+
+	i = 0;
+	while (list->content != content)
+	{
+		list = list->next;
+		i++;
+	}
+	return (i);
 }
 
 static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)
@@ -93,8 +86,6 @@ static void	ft_movemaxmin(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 
 void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 {
-	int		contentb;
-	int		contenta;
 	int		min;
 	int		i;
 
@@ -103,22 +94,7 @@ void		ft_insertsort(t_pslist **lista, t_pslist **listb, t_opti **listopt)
 	ft_shortsort(lista, listb, listopt);
 	while (*listb)
 	{
-		contentb = ft_best(*lista, *listb, ft_pslstlen(*listb));
-		i = ft_go(*listb, contentb);
-		if (i <= ft_pslstlen(*listb) / 2)
-			while ((*listb)->content != contentb)
-				ft_exec_inst(lista, listb, "rb\n", listopt);
-		else
-			while ((*listb)->content != contentb)
-				ft_exec_inst(lista, listb, "rrb\n", listopt);
-		contenta = ft_best_waya(*lista, contentb);
-		i = ft_go(*lista, contenta);
-		if (i <= ft_pslstlen(*lista) / 2)
-			while ((*lista)->content != contenta)
-				ft_exec_inst(lista, listb, "ra\n", listopt);
-		else
-			while ((*lista)->content != contenta)
-				ft_exec_inst(lista, listb, "rra\n", listopt);
+		ft_loop(lista, listb, listopt);
 		ft_exec_inst(lista, listb, "pa\n", listopt);
 	}
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 17:08:19 by ayguillo          #+#    #+#             */
-/*   Updated: 2019/02/11 16:01:07 by ayguillo         ###   ########.fr       */
+/*   Updated: 2019/02/13 14:18:36 by ayguillo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,16 @@ void			ft_shortsort(t_pslist **lista, t_pslist **listb,
 void			ft_insertsort(t_pslist **lista, t_pslist **listb,
 		t_opti **listopt);
 t_opti			*ft_optinst(t_opti *listopt);
+int				ft_go(t_pslist *list, int content);
+int				ft_best_waya(t_pslist *list, int content);
+int				ft_best(t_pslist *list, t_pslist *listb, int len);
 void			ft_supprlast(t_opti **listopt, t_opti *prev);
 void			ft_optirrb(t_opti **listopt);
 void			ft_optirb(t_opti **listopt);
+void			ft_delopti(t_opti *listopt);
+void			ft_supproneel(t_opti **listopt, t_opti *prev);
 void			ft_optidoublera(t_opti **listopt);
+void			ft_loop(t_pslist **lista, t_pslist **listb, t_opti **listopt);
 t_opti			*ft_pushbackstr(char *str, t_opti *listopt);
 
 #endif

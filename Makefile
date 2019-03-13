@@ -6,7 +6,7 @@
 #    By: ayguillo <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 09:51:31 by ayguillo          #+#    #+#              #
-#    Updated: 2019/02/11 16:23:52 by ayguillo         ###   ########.fr        #
+#    Updated: 2019/02/13 14:52:03 by ayguillo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ LIBFT = lib
 
 CC = @ gcc 
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror# -g -fsanitize=address
 
 RED=$'\x1b[31m
 GREEN=$'\x1b[32m
@@ -49,11 +49,13 @@ all : $(LIBFT) $(NAMEPS) $(NAMECHECK)
 $(LIBFT) :
 	@make -C libft
 
-$(NAMECHECK) : $(OBJSCHECK) $(OBJS) $(LIBFT)
+$(NAMECHECK) : $(OBJSCHECK) $(OBJS)
+	@make -C libft
 	$(CC) $(CFLAGS) -o $(NAMECHECK) $(OBJSCHECK) $(OBJS) libft/libft.a
 	@echo "$(GREEN)$(NAMECHECK) compiled ✔$(END)"
 
-$(NAMEPS) : $(OBJSPS) $(OBJS) $(LIBFT)
+$(NAMEPS) : $(OBJSPS) $(OBJS)
+	@make -C libft
 	$(CC) $(CFLAGS) -o $(NAMEPS) $(OBJSPS) $(OBJS) libft/libft.a
 	@echo "$(GREEN)$(NAMEPS) compiled ✔$(END)"
 
